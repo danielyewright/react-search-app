@@ -20,7 +20,6 @@ body {
   height: 150px;
   padding: 10px;
   color: white;
-  margin-bottom: 35px;
 }
 
 .App-title {
@@ -29,11 +28,13 @@ body {
 
 .App-intro {
   font-size: large;
+  padding: 20px 0;
 }
 
 .App-container {
   width: 700px;
   margin: 0 auto;
+  padding-bottom: 40px;
 }
 
 @keyframes App-logo-spin {
@@ -67,15 +68,32 @@ input:focus {
 }
 
 th {
-  background-color: rgb(236, 236, 236);
   padding: 10px;
+  background-color: #282c34;
+  color: #fff;
+}
+
+tbody td {
+  padding: 10px;
+}
+
+tbody tr {
+  transition: all .2s ease-in-out;
+}
+
+tbody tr:hover {
+  background-color: rgb(236, 236, 236);
   color: rgb(109, 109, 109);
 }
 
-td {
-  padding: 10px;
+a {
+  background-color: rgba(187,239,253,0.3);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  color: #1a1a1a;
+  text-decoration: none;
 }
 
-tr:hover {
-  background-color: rgb(236, 236, 236);
+a:hover {
+  background-color: #bbeffd;
+  border-bottom-color: #1a1a1a;
 }

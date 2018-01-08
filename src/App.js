@@ -62,13 +62,11 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          Fake data is pulled from the <a href="https://jsonplaceholder.typicode.com/" target="_blank">JSONPlaceholder</a> API.
         </p>
-        <br />
         <div className="App-container">
           <SearchBar onTermChange={this.handleChange} />
           <TableList users={this.state.items} />
-          <br /><br />
         </div>
       </div>
     )
