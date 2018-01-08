@@ -48,7 +48,6 @@ class App extends Component {
         return null
       }
     })
-    // console.log(filters)
     this.setState({
       items: filters
     })
@@ -62,7 +61,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          Fake data is pulled from the <a href="https://jsonplaceholder.typicode.com/" target="_blank">JSONPlaceholder</a> API.
+          Fake data is being fetched from the <a href="https://jsonplaceholder.typicode.com/" target="_blank">JSONPlaceholder</a> API.
         </p>
         <div className="App-container">
           <SearchBar onTermChange={this.handleChange} />
