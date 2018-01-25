@@ -16,13 +16,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch('https://randomuser.me/api?results=100&nat=us')
       .then(res => {
         return res.json()
       })
       .then(data => {
-        let users = data.map((client, index) => {
-          return client;
+        let users = data.results.map((user, index) => {
+          return user;
         })
         this.setState({
           users: users,
@@ -60,12 +60,14 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          Fake data is being fetched from the <a href="https://jsonplaceholder.typicode.com/" target="_blank" rel="noopener noreferrer">JSONPlaceholder</a> API.
-        </p>
         <div className="App-container">
-          <SearchBar onTermChange={this.handleChange} />
-          <TableList users={this.state.items} />
+          <p className="App-intro">
+            Fake data is being fetched from the <a href="https://randomuser.me/" target="_blank" rel="noopener noreferrer">Random User Generator</a> API.
+          </p>
+          <div className="App-container">
+            <SearchBar onTermChange={this.handleChange} />
+            <TableList users={this.state.items} />
+          </div>
         </div>
       </div>
     )
