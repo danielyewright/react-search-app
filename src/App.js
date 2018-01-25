@@ -34,8 +34,13 @@ class App extends Component {
   handleChange(event) {
     let filters = this.state.users;
     filters = filters.filter((e) => {
-      if (e.name.toLowerCase().includes(event.toLowerCase())) {
-        return e.name.toLowerCase().search(
+      if (e.name.first.toLowerCase().includes(event.toLowerCase())) {
+        return e.name.first.toLowerCase().search(
+          event.toLowerCase()
+        ) !== -1;
+      }
+      if (e.name.last.toLowerCase().includes(event.toLowerCase())) {
+        return e.name.last.toLowerCase().search(
           event.toLowerCase()
         ) !== -1;
       }
