@@ -79,7 +79,6 @@ class App extends React.Component {
     return(
       <div>
         <header className="container mt-5 mb-5">
-          <h1 className="text-center">Random User Generator</h1>
           <p className="lead text-center">This is a sample React app showcasing the ability to search through data, and offering pagination. Data is being fetched from the <a href="https://randomuser.me/" target="_blank" rel="noopener noreferrer">randomuser.me</a> API. The source code can be found on <a href="https://github.com/danielyewright/react-search-app" target="_blank" rel="noopener noreferrer">GitHub</a>; feel free to clone/fork the project and make it better : )</p>
         </header>
         <div className="container">
