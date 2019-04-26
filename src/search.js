@@ -16,7 +16,7 @@ class SearchBar extends Component {
   render() {
     return(
       <div>
-        <input type="text" placeholder="Search by name or email..." onChange={(event) => this.onInputChange(event.target.value)} />
+        <input type="text" className="form-control mb-3" placeholder="Search by name or email..." onChange={(event) => this.onInputChange(event.target.value)} />
       </div>
     )
   }

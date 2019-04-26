@@ -7,8 +7,16 @@ const capitalize = (string) => {
 const TableItem = (user) => {
   return(
     <tr>
+      <td>
+        <img src={user.item.picture.thumbnail} className="" alt="User avatar" />
+      </td>
       <td>{capitalize(user.item.name.first) + ' ' + capitalize(user.item.name.last)}</td>
+      <td>
+        {user.item.location.street},<br />
+        {capitalize(user.item.location.city)}, {capitalize(user.item.location.state)} {user.item.location.postcode}
+      </td>
       <td>{user.item.email.toLowerCase()}</td>
+      <td>{user.item.dob.age}</td>
     </tr>
   )
 }

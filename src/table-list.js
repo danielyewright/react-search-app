@@ -4,15 +4,18 @@ import TableItem from './table-item';
 const TableList = (props) => {
   const listItems = props.users.map((user, index) => {
     return <TableItem key={index} item={user} />
-  })
+  });
 
   return(
     <div>
-      <table>
-        <thead>
+      <table className="table table-hover">
+        <thead className="thead-dark">
           <tr>
-            <th>Name</th>
-            <th>Email</th>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
           </tr>
         </thead>
         <tbody>

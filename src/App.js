@@ -1,18 +1,22 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import TableList from './table-list';
 import SearchBar from './search';
+import Pagination from './pagination';
+import * as packageJSON from '../package.json';
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      users: [],
-      items: []
+      generatedUsers: [],
+      filteredUsers: [],
+      pageOfItems: []
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.onChangePage = this.onChangePage.bind(this);
+    this.handlePageSize = this.handlePageSize.bind(this);
   }
 
   componentDidMount() {
@@ -21,19 +25,19 @@ class App extends Component {
         return res.json()
       })
       .then(data => {
-        let users = data.results.map((user, index) => {
+        let generatedUsers = data.results.map(user => {
           return user;
-        })
+        });
         this.setState({
-          users: users,
-          items: users
-        })
-      })
+          generatedUsers: generatedUsers,
+          filteredUsers: generatedUsers
+        });
+      });
   }
 
   handleChange(event) {
-    let filters = this.state.users;
-    filters = filters.filter((e) => {
+    let filtered = this.state.generatedUsers;
+    filtered = filtered.filter((e) => {
       if (e.name.first.toLowerCase().includes(event.toLowerCase())) {
         return e.name.first.toLowerCase().search(
           event.toLowerCase()
@@ -54,25 +58,62 @@ class App extends Component {
       }
     })
     this.setState({
-      items: filters
-    })
+      filteredUsers: filtered
+    });
+  }
+
+  onChangePage(pageOfItems) {
+    // update state with new page of items
+    this.setState({
+      pageOfItems: pageOfItems
+    });
+  }
+
+  handlePageSize(event) {
+    this.setState({
+      [event.target.name]: Number(event.target.value)
+    });
   }
 
   render() {
     return(
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+      <div>
+        <header className="container mt-5 mb-5">
+          <h1 className="text-center">Random User Generator</h1>
+          <p className="lead text-center">This is a sample React app showcasing the ability to search through data, and offering pagination. Data is being fetched from the <a href="https://randomuser.me/" target="_blank" rel="noopener noreferrer">randomuser.me</a> API. The source code can be found on <a href="https://github.com/danielyewright/react-search-app" target="_blank" rel="noopener noreferrer">GitHub</a>; feel free to clone/fork the project and make it better : )</p>
         </header>
-        <div className="App-container">
-          <p className="App-intro">
-            Fake data is being fetched from the <a href="https://randomuser.me/" target="_blank" rel="noopener noreferrer">Random User Generator</a> API.
+        <div className="container">
+          <p className="lead text-center mt-5 mb-5 d-none">
+            Fake data is being fetched from the <a href="https://randomuser.me/" target="_blank" rel="noopener noreferrer">randomuser.me</a> API.
           </p>
-          <div className="App-container">
+          <div>
             <SearchBar onTermChange={this.handleChange} />
-            <TableList users={this.state.items} />
+            <TableList users={this.state.pageOfItems} />
           </div>
+          <hr />
+          <div className="row mb-5">
+            <div className="col-sm-6 text-left">
+              {
+                this.state.pageOfItems.length <= 9 ? (
+                  null
+                ) : <div className="form-inline page-items">
+                  <div className="form-group">
+                    <label htmlFor="pageSize" className="no-bold">Items per page: &nbsp;</label>
+                    <select name="pageSize" className="form-control" value={this.state.pageSize} onChange={this.handlePageSize}>
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                  </div>
+                </div>
+              }
+            </div>
+            <div className="col-sm-6 text-right">
+              <Pagination items={this.state.filteredUsers} pageSize={this.state.pageSize} onChangePage={this.onChangePage} />
+            </div>
+          </div>
+          <p className="text-center text-muted text-sm">Version {packageJSON.version}</p>
         </div>
       </div>
     )
